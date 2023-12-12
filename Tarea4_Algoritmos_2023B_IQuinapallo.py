@@ -35,13 +35,13 @@ while True:
 
         comprarmas = input("¿Desea comprar más hamburguesas? (si/no): ")
 
-        if comprarmas.lower() != "si":
+        if comprarmas != "si":
             mpago = input("Ingrese el método de pago (efectivo o tarjeta): ")
 
-            if mpago in ["efectivo", "tarjeta"]:
+            if mpago == "efectivo" or mpago == "tarjeta":
                 dfactura = input("¿Desea factura? (si/no): ")
 
-                if dfactura.lower() == "si":
+                if dfactura == "si":
                     ncliente = input("Ingrese su nombre: ")
                     ccliente = input("Ingrese su cédula: ")
                     ccliente = input("Ingrese su correo electrónico: ")
@@ -60,6 +60,7 @@ while True:
         print("Lo sentimos, en el Carbonero no ofrecemos ese tipo de hamburguesas. Intente nuevamente.")
 
 print("Compra finalizada. Gracias por su compra!")
+
 
 #Ejercicio 2
 while True:
