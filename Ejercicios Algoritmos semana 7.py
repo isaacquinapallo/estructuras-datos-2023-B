@@ -1,4 +1,4 @@
-"""""
+
 #Ejercicio1
 #Realice un programa, para calcular la suma de los N primeros números pares. Es decir, si insertamos un 8, nos haga la suma de 2+4+6+8. Recuerda utilizar la sentencia de repetición. 
 numero1= int(input("Ingresa un número para calcular la suma de los primeros números pares: "))
@@ -164,7 +164,7 @@ while True:
             print("Sintonizando en el Smart TV la actividad: Actividad ", opcion1)
     else:
         print("Ingrese un número válido entre 0 y 9.")
-"""
+
 #Ejercicio11
 tahorrado =0
 while True:
