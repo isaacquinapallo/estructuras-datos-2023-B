@@ -1,4 +1,3 @@
-"""""
 #Ejercicio 1 Parte1
 #Funcion
 def sumadigito(valor1):
@@ -85,7 +84,7 @@ def factorial(numerofact):
     return factorialguardada
 nfactorial = int(input("Ingrese el número para determinar su factorial: "))
 print("El factorial de", nfactorial, "es:", factorial(nfactorial))
-"""
+
 #Ejercicio 7 Parte 1
 def validacionDNI(Ndni):
     contador=0
