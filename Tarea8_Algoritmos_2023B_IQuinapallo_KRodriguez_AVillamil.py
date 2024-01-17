@@ -100,3 +100,4 @@ def mainfuncion():
     print("Si su DNI es falso se imprimira (False), caso contrario se mostrará (True)")
     print("Su Dni es: ", validacionDNI(dni))
 mainfuncion() 
+
