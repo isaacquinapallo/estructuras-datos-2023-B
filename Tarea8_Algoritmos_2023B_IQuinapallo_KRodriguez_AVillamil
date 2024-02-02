@@ -1,0 +1,478 @@
+#semana 11 KARLA RODRIGUEZ, ISAAC QUINAPALLO, ANGEL VILLAMIL
+
+#1.	Crear una función con dos parámetros paso por referencia y valor, 
+# que doble el valor de la lista y el dato enviado.
+def valorylista(porvalor, porreferencia):
+    por_valor *= 2
+    for i in range(len(porreferencia)):
+        porreferencia[i] *= 2
+valor = 5
+milista = [1, 2, 3, 4]
+print("ANTES")
+print("Valor por valor:", valor)
+print("Lista por referencia:", milista)
+valorylista(valor, milista)
+print("DESPUES")
+print("Valor por valor:", valor)  
+print("Lista por referencia:", milista)
+
+#2.	Crear una función que muestre una lista dada}
+def mostrarlista(lista):
+    print("La lista es:", lista)
+milista = [1, 2, 3, 4, 5]
+mostrarlista(milista)
+
+#3.	Crear una función que sume los valores de una lista dada
+def sumar(lista):
+    suma = 0
+    for elemento in lista:
+        suma += elemento
+    return suma
+
+milista = [1, 2, 3, 4, 5]
+resultado = sumar(milista)
+print("La suma de la lista es: ", resultado)
+
+#4.	Elaborar tres funciones, la primera recibe la lista 
+# y retorna la suma de todos sus elementos, la segunda recibe la lista
+# y retorna el mayor valor y la última recibe la lista y retorna el menor.
+def sumar(lista):
+    suma = sum(lista)
+    return suma
+
+def mayor(lista):
+    mayor = max(lista)
+    return mayor
+
+def menor(lista):
+    menor = min(lista)
+    return menor
+
+milista = [1, 7, 3, 14, 5]
+sumaresultado = sumar(milista)
+mayorresultado = mayor(milista)
+menorresultado = menor(milista)
+
+print("La suma de la lista es: ", sumaresultado)
+print("El mayor valor de la lista es:", mayorresultado)
+print("El menor valor de la lista es:", menorresultado)
+
+#Algoritmos de búsqueda lineal
+#5.	Crear una función que imprima la posición de un valor enviado
+def buscarLinealmente(lista, numero):
+    i = 0  # posición de la lista
+    for elemento in lista:
+    # estamos en la posicion i, z contiene el valor de lista[i]
+        if elemento == numero:
+            return i
+        i = i+1
+    return -1
+
+lista = [11, 5, 3, 6, 7, 8, 4, 9, 1, 0]
+resultado = buscarLinealmente(lista, 7)
+print("La posición del valor 7 en la lista es:", resultado)
+
+#Matrices
+#Dada la siguiente matriz:
+#Mostrar todos los elementos de la matriz fila por fila
+#Mostrar todos los elementos de la matriz elemento a elemento en columna 
+#Mostrar todos los elementos de la matriz en formato de matriz
+#Leer el último elemento de cada fila
+def filaporfila(matriz):
+    for fila in matriz:
+        print(fila)
+
+def elementoaelemento(matriz):
+    filas, columnas = len(matriz), len(matriz[0])
+    for columna in range(columnas):
+        for fila in range(filas):
+            print(matriz[fila][columna])
+
+def formato(matriz):
+    for fila in matriz:
+        print(fila)
+
+def ultimoelemento(matriz):
+    for fila in matriz:
+        ultimo= fila[-1]
+        print("ultimo elemento de la fila:", ultimo)
+
+valores = [[8, 14, 16], [12, -7, 4], [-11, 3, 21]]
+
+print("Mostrar todos los elementos de la matriz fila por fila: ")
+filaporfila(valores)
+
+print("Mostrar todos los elementos de la matriz elemento a elemento en columna: ")
+elementoaelemento(valores)
+
+print("Mostrar todos los elementos de la matriz en formato de matriz:")
+formato(valores)
+
+print("Leer el último elemento de cada fila:")
+ultimoelemento(valores)
+
+
+#7.	Generar una matriz con elementos de tipo entero desde el teclado.
+# El usuario debe especificar las filas y las columnas de la matriz e ingresar los elementos, mostrar en formato de matriz
+def matriz(filas, columnas):
+    matriz = []
+    for i in range(filas):
+        fila = []
+        for j in range(columnas):
+            elemento = int(input(f"ingrese el elemento para la posicion [{i}][{j}]: "))
+            fila.append(elemento)
+        matriz.append(fila)
+    return matriz
+
+def mostrarmatriz(matriz):
+    for fila in matriz:
+        print(fila)
+
+filas = int(input("ingrese el número de filas: "))
+columnas = int(input("ingrese el número de columnas: "))
+mimatriz = matriz(filas, columnas)
+print("matriz generada:")
+mostrarmatriz(mimatriz)
+
+#EJERCICIO1
+def iniciarSesion(usuario, contrasena, intentos):
+    usuarioCorrecto= "usuario1"
+    contrasenaCorrecta= "asdasd"
+    if usuario== usuarioCorrecto and contrasena == contrasenaCorrecta:
+        print("Inicio de sesión exitoso, bienvenido.")
+        return True, intentos
+    else:
+        print("Inicio de sesión fallido.")
+        intentos += 1
+        return False, intentos
+
+intentosMaximos= 3
+intentos= 0
+while intentos<intentosMaximos:
+    nombreUsuario= input("Ingrese el nombre de usuario: ")
+    contraseña= input("Ingrese la contraseña: ")
+    resultado, intentos = iniciarSesion(nombreUsuario, contraseña, intentos)
+    if resultado:
+        break
+    if intentos== intentosMaximos:
+        print("Se han agotado los intentos. :c")
+
+#EJERCICIO2
+def ConvertirEspaciado(texto):
+    resultado= ""
+    for caracter in texto:
+        resultado+= caracter+ " "
+    return resultado[:-1]
+textoOriginal = input("Ingrese un texto: ")
+textoConvertido = ConvertirEspaciado(textoOriginal)
+print("Texto original: ", textoOriginal)
+print("Texto convertido: ", textoConvertido)
+
+#EJERCICIO3
+def crearLista():
+    longitud= int(input("Ingrese la longitud de la lista: "))
+    lista= []
+    for i in range(longitud):
+        valor= int(input("Ingrese el valor para la posición {}: ".format(i)))
+        lista.append(valor)
+    return lista
+
+def imprimirLista(lista):
+    print("Lista:", lista)
+
+def busquedaLineal(lista, valorbuscar):
+    for i, valor in enumerate(lista):
+        if valor== valorbuscar:
+            return i
+    return -1
+
+# Programa principal
+miLista= crearLista()
+imprimirLista(miLista)
+valorabuscar= int(input("Ingrese el valor a buscar: "))
+posicionencontrada= busquedaLineal(miLista, valorabuscar)
+if posicionencontrada!= -1:
+    print("El valor", valorabuscar, "se encuentra en la posición", posicionencontrada, "de la lista.")
+else:
+    print("El valor", valorabuscar, "no se encuentra en la lista.")
+
+#EJERCICIO4
+def crearMatriz(filas, columnas):
+    matriz= []
+    for i in range(filas):
+        fila= []
+        for j in range(columnas):
+            valor= int(input(f"Ingrese el valor para la posición ({i+1}, {j+1}): "))
+            fila.append(valor)
+        matriz.append(fila)
+
+    return matriz
+
+def imprimirMatriz(matriz):
+    for fila in matriz:
+        print(fila)
+
+# Programa principal
+filas= int(input("Ingrese el número de filas: "))
+columnas= int(input("Ingrese el número de columnas: "))
+miMatriz= crearMatriz(filas, columnas)
+print("Matriz ingresada:")
+imprimirMatriz(miMatriz)
+
+#EJERCICIO5
+def LongitudPila(pila):
+    return len(pila)
+
+def EstaVaciaPila(pila):
+    return len(pila)== 0
+
+def EstaLlenaPila(pila, capacidad):
+    return len(pila)== capacidad
+
+def AddPila(elemento, pila, capacidad):
+    if not EstaLlenaPila(pila, capacidad):
+        pila.append(elemento)
+        print("Elemento ",elemento, " añadido a la pila.")
+    else:
+        print("Error: La pila está llena. No se puede añadir más elementos.")
+
+def SacarDeLaPila(pila):
+    if not EstaVaciaPila(pila):
+        elemento = pila.pop()
+        print("Elemento ", elemento, " sacado de la pila.")
+        return elemento
+    else:
+        print("Error: La pila está vacía. No se puede sacar ningún elemento.")
+        return None
+
+def EscribirPila(pila):
+    print("Contenido de la pila:")
+    for elemento in reversed(pila):
+        print(elemento)
+
+# Programa principal
+capacidad_pila= 5
+mi_pila= []
+print("Longitud de la pila:", LongitudPila(mi_pila))
+print("¿La pila está vacía?", EstaVaciaPila(mi_pila))
+print("¿La pila está llena?", EstaLlenaPila(mi_pila, capacidad_pila))
+AddPila("Elemento1", mi_pila, capacidad_pila)
+AddPila("Elemento2", mi_pila, capacidad_pila)
+AddPila("Elemento3", mi_pila, capacidad_pila)
+EscribirPila(mi_pila)
+sacado= SacarDeLaPila(mi_pila)
+if sacado is not None:
+    print("Elemento sacado:", sacado)
+EscribirPila(mi_pila)
+#EJERCICIO6
+capacidad_pila= 5
+mi_pila= []
+while True:
+    print("Menú:")
+    print("1. Añadir elemento a la pila")
+    print("2. Sacar elemento de la pila")
+    print("3. Longitud de la pila")
+    print("4. Mostrar pila")
+    print("5. Salir")
+    opcion= input("Ingrese la opción deseada (1-5): ")
+
+    if opcion == "1":
+        elemento = input("Ingrese el elemento a añadir: ")
+        AddPila(elemento, mi_pila, capacidad_pila)
+    elif opcion == "2":
+        SacarDeLaPila(mi_pila)
+    elif opcion == "3":
+        print("Longitud de la pila: {}".format(LongitudPila(mi_pila)))
+    elif opcion == "4":
+        EscribirPila(mi_pila)
+    elif opcion == "5":
+        print("Saliendo del programa.")
+        break
+    else:
+        print("Opción no válida. Por favor, ingrese un número del 1 al 5.")
+#Ejercicios Angel
+def crear_matriz():
+    filas = int(input("Ingrese el numero de filas: "))
+    columnas = int(input("Ingrese el numero de columnas: "))
+
+    # Crear la matriz
+    matriz = []
+    for i in range(filas):
+        fila = []
+        for j in range(columnas):
+            elemento = int(input(f"Ingrese el elemento [{i}][{j}]: "))
+            fila.append(elemento)
+        matriz.append(fila)
+
+    return matriz
+
+def mostrar_diagonal_principal(matriz):
+    filas = len(matriz)
+    columnas = len(matriz[0])
+
+    if filas != columnas:
+        print("La matriz no es cuadrada")
+        return
+
+    diagonal_principal = []
+    for i in range(filas):
+        diagonal_principal.append(matriz[i][i])
+
+    print("La diagonal principal de la matriz es:")
+    print(diagonal_principal)
+
+matriz = crear_matriz()
+
+print("La matriz ingresada es:")
+for fila in matriz:
+    print(fila)
+mostrar_diagonal_principal(matriz)
+
+
+#ANGEL VILLAMIL 8
+def copiar_matriz(matriz):
+
+    filas = len(matriz)
+    columnas = len(matriz[0])
+    
+    matriz_copia = []
+    for i in range(filas):
+        fila_copia = []
+        for j in range(columnas):
+            fila_copia.append(matriz[i][j])
+        matriz_copia.append(fila_copia)
+
+    return matriz_copia
+
+matriz_original = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+matriz_copia = copiar_matriz(matriz_original)
+
+for fila in matriz_copia:
+    print(fila)
+
+#ANGEL VILLAMIL 9
+def matriz_transpuesta(matriz):
+    filas = len(matriz)
+    columnas = len(matriz[0])
+
+    # Crear la matriz transpuesta
+    matriz_transpuesta = []
+    for j in range(columnas):
+        fila_transpuesta = []
+        for i in range(filas):
+            fila_transpuesta.append(matriz[i][j])
+        matriz_transpuesta.append(fila_transpuesta)
+
+    return matriz_transpuesta
+
+matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+matriz_transpuesta = matriz_transpuesta(matriz)
+
+for fila in matriz_transpuesta:
+    print(fila)
+
+#ANGEL VILLAMIL 10
+
+def sumar_matrices():
+    filas = int(input("Ingrese el número de filas: "))
+    columnas = int(input("Ingrese el número de columnas: "))
+
+    matriz1 = []
+    matriz2 = []
+
+    print("Ingrese los elementos de la primera matriz:")
+    for i in range(filas):
+        fila = []
+        for j in range(columnas):
+            elemento = int(input(f"Ingrese el elemento [{i}][{j}]: "))
+            fila.append(elemento)
+        matriz1.append(fila)
+
+    print("Ingrese los elementos de la segunda matriz:")
+    for i in range(filas):
+        fila = []
+        for j in range(columnas):
+            elemento = int(input(f"Ingrese el elemento [{i}][{j}]: "))
+            fila.append(elemento)
+        matriz2.append(fila)
+
+    matriz_resultante = []
+    for i in range(filas):
+        fila_resultante = []
+        for j in range(columnas):
+            suma = matriz1[i][j] + matriz2[i][j]
+            fila_resultante.append(suma)
+        matriz_resultante.append(fila_resultante)
+
+    print("La matriz resultante de la suma es:")
+    for fila in matriz_resultante:
+        print(fila)
+
+sumar_matrices()
+
+#ANGEL VILLAMIL 11
+import random
+
+def registro_aspirantes():
+    n = int(input("Ingrese la cantidad de cupos disponibles: "))
+    m = n
+    
+    estudiantes = []
+    
+    while True:
+        cedula = input("Ingrese la cédula del aspirante (o 'q' para salir): ")
+        if cedula == 'q':
+            break
+        
+        nombre = input("Ingrese el nombre del aspirante: ")
+        condecoracion = int(input("Ingrese la condecoración (1: abanderado/escolta, 0: ninguna): "))
+        
+        estudiantes.append((cedula, nombre, condecoracion))
+        
+        if condecoracion == 1:
+            n -= 1
+    
+    random.shuffle(estudiantes)
+    seleccionados = estudiantes[:m]
+    
+    print("Lista de estudiantes seleccionados:")
+    print("Cédula\t\tNombre\t\tCondecoración")
+    for estudiante in seleccionados:
+        print(estudiante[0] + "\t" + estudiante[1] + "\t\t" + str(estudiante[2]))
+    
+registro_aspirantes()
+
+#ANGEL VILLAMIL 12
+import random
+
+def juego_ruedas():
+    lista = ["X"] * 11 + ["Rueda"] * 4
+    random.shuffle(lista)
+    
+    intentos = 7
+    ruedas_encontradas = 0
+    
+    while intentos > 0 and ruedas_encontradas < 4:
+        indice = int(input("Ingresa un índice entre 0 y 14: "))
+        
+        if indice < 0 or indice > 14:
+            print("Índice inválido. Debe estar entre 0 y 14.")
+            continue
+        
+        if lista[indice] == "Rueda":
+            ruedas_encontradas += 1
+            print("¡Encontraste una rueda!")
+            print("Número total de ruedas encontradas: ",ruedas_encontradas)
+        else:
+            print("No encontraste una rueda.")
+        
+        intentos -= 1
+    
+    if ruedas_encontradas == 4:
+        print("¡Ganaste un carro!")
+    else:
+        print("No encontraste las cuatro ruedas.")
+    
+juego_ruedas()
