@@ -1,21 +1,19 @@
 #PROYECTO ISAAC, KARLA Y ANGEL
 #LINK VIDEO: https://youtu.be/TPMuXvT-H_k?si=l06xCOFMwh5Iy3XM
 
-# Contraceña e inicio del Docente
 def iniciar_sesion():
     intentos = 0
     while intentos < 3:
         usuario = input("Usuario: ")
-        contrasena = input("Contrasena: ")
+        contrasena = input("Contraseña: ")
         if usuario == "docente@esfot.edu.ec" and contrasena == "Docente2023*":
             return True
         else:
             print("Credenciales incorrectas. Inténtelo de nuevo.")
             intentos += 1
-    print("Numero maximo de intentos alcanzado. Saliendo del sistema...")
+    print("Número máximo de intentos alcanzado. Saliendo del sistema...")
     return False
 
-# Función para registrar calificaciones
 def registrar_calificaciones():
     institucion = input("Ingrese el nombre de la institución (Colegio o Universidad): ")
     materia = input("Ingrese la materia: ")
@@ -31,7 +29,8 @@ def registrar_calificaciones():
         nota2 = float(input(f"Ingrese la nota 2 del estudiante {i}: "))
         total = nota1 + nota2
         estudiantes.append((nombre, apellido, correo, nota1, nota2, total))
-    print("Guardando informacion en archivo de calificaciones.txt")
+
+    print("Guardando información en archivo de calificaciones.txt")
 
     with open("calificaciones.txt", "w") as file:
         file.write(f"COLEGIO O UNIVERSIDAD: {institucion}\n")
@@ -63,7 +62,6 @@ def registrar_calificaciones():
         file.write(f"DOCENTE: {nombre_docente}\n")
     return nombre_docente, estudiantes
 
-# Función de Merge Sort
 def merge_sort(arr):
     if len(arr) > 1:
         mid = len(arr) // 2
@@ -94,7 +92,6 @@ def merge_sort(arr):
             j += 1
             k += 1
 
-# Función de Quick Sort
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -104,20 +101,19 @@ def quick_sort(arr):
     right = [x for x in arr if x[1] > pivot]
     return quick_sort(left) + middle + quick_sort(right)
 
-# Función para ordenar calificaciones
 def ordenar_calificaciones(nombre_docente, calificaciones):
     algoritmo = input("Seleccione el algoritmo de ordenamiento (Burbuja, Inserción, Selección, MergeSort, QuickSort): ").lower()
 
     if algoritmo == 'burbuja':
         for i in range(len(calificaciones) - 1):
             for j in range(len(calificaciones) - 1 - i):
-                if calificaciones[j][1] > calificaciones[j+1][1]:
+                if calificaciones[j][5] > calificaciones[j+1][5]:
                     calificaciones[j], calificaciones[j+1] = calificaciones[j+1], calificaciones[j]
     elif algoritmo == 'insercion':
         for i in range(1, len(calificaciones)):
             key = calificaciones[i]
             j = i - 1
-            while j >= 0 and calificaciones[j][1] > key[1]:
+            while j >= 0 and calificaciones[j][5] > key[5]:
                 calificaciones[j + 1] = calificaciones[j]
                 j -= 1
             calificaciones[j + 1] = key
@@ -125,7 +121,7 @@ def ordenar_calificaciones(nombre_docente, calificaciones):
         for i in range(len(calificaciones)):
             min_idx = i
             for j in range(i+1, len(calificaciones)):
-                if calificaciones[j][1] < calificaciones[min_idx][1]:
+                if calificaciones[j][5] < calificaciones[min_idx][5]:
                     min_idx = j
             calificaciones[i], calificaciones[min_idx] = calificaciones[min_idx], calificaciones[i]
     elif 'mergesort' in algoritmo:
@@ -138,113 +134,70 @@ def ordenar_calificaciones(nombre_docente, calificaciones):
 
     with open("ordenamiento.txt", "w") as file:
         file.write(f"| Algoritmo de ordenamiento seleccionado: {algoritmo}\n")
-        for estudiante, calificacion in calificaciones:
-            file.write(f"{estudiante}: {calificacion}\n")
+        for estudiante in calificaciones:
+            file.write(f"{estudiante[0]}: {estudiante[5]}\n")
 
     print("-" * 50)
     with open("calificaciones.txt", "r") as file:
         institucion = file.readline().split(": ")[1].strip()
     print(f"| {'Colegio o Universidad:':<30} {institucion}")
-    print(f"| {'El algoritmo que escogiste fue:':<30} {algoritmo}            |")
+    print(f"| {'El algoritmo que escogió:':<30} {algoritmo}")
+    print("-" * 50)
+    print("|      NOMBRE      | NOTA TOTAL |")
+    print("-" * 50)
+    for estudiante in calificaciones:
+        print(f"| {estudiante[0]:<17} | {estudiante[5]:^11.2f} |")
+    print("-" * 50)
 
-    print("|", "-" * 50, "|")
-    print("| Notas ordenadas:","                                  |")
-    for estudiante, calificacion in calificaciones:
-        print("|", "-"*50, "|")
-        print(f"| {estudiante} | : |{calificacion} |")
-        print("|", "-"*50, "|")
+def buscar_calificaciones():
+    with open("calificaciones.txt", "r") as file:
+        calificaciones = file.readlines()[7:-4]
 
-    print("|", "-" * 50, "|")
-    print(f"|{'docente':<15} |{nombre_docente}|")
-    print("|", "-" * 50, "|")
+    busqueda = input("Ingrese el nombre del estudiante a buscar: ").strip().lower()
 
-# Función para buscar una calificación
-def buscar_calificacion():
-    with open("buscar.txt", "r") as file:
-         # Leer todas las líneas del archivo y saltar las dos primeras líneas
-        lineas = file.readlines()[8:]
-    # Crear una lista de tuplas donde cada tupla contiene el nombre del estudiante y su calificación
-    calificaciones = []
-    for linea in lineas:
-        # Dividir cada línea en dos partes usando ": " como separador
-        partes = linea.split(": ")
-        # El primer elemento es el nombre del estudiante y el segundo es la calificación
-        nombre_estudiante = partes[1]
-        calificacion = float(partes[-1].strip())
-        # Agregar el nombre del estudiante y su calificación como una tupla a la lista de calificaciones
-        calificaciones.append((nombre_estudiante, calificacion))
-    calificacion_buscada = float(input("Ingrese la calificación que desea buscar: "))
-    algoritmo_busqueda = input("Seleccione el algoritmo de búsqueda (Lineal, Binaria, Interpolación, etc.): ").lower()
+    encontrados = []
 
-    if algoritmo_busqueda == 'lineal':
-        encontrado = False
-        for estudiante, calificacion in calificaciones:
-            if calificacion == calificacion_buscada:
-                print("La calificación",calificacion_buscada," fue encontrada para el estudiante", estudiante)
-                encontrado = True
-                break
-        if not encontrado:
-            print("La calificación",calificacion_buscada," no fue encontrada.")
+    for calificacion in calificaciones:
+        if busqueda in calificacion.lower():
+            encontrados.append(calificacion.strip())
+
+    if encontrados:
+        with open("busqueda.txt", "w") as file:
+            for i in range(len(encontrados)):
+                file.write(encontrados[i] + "\n")
+            print("Se ha generado el archivo 'busqueda.txt' con los resultados de la búsqueda.")
     else:
-        print("Algoritmo de búsqueda no válido.")
+        print("No se encontraron resultados para la búsqueda especificada.")
 
-    with open("busqueda.txt", "w") as file:
-        file.write("COLEGIO o UNIVERSIDAD ___\n")
-        file.write("\n")
-        file.write("REPORTE DE CALIFICACIONES\n")
-        file.write("\n")
-        file.write("Búsqueda de Calificaciones\n")
-        file.write("\n")
-        file.write(f"ALGORITMO: {algoritmo_busqueda.capitalize()}\n")
-        file.write("\n")
-        file.write(f"La calificación a buscar fue de: {calificacion_buscada}\n")
-        file.write("\n")
-        if encontrado:
-            file.write(f"Corresponde al estudiante: {estudiante}, {calificacion}\n")
-        file.write("\n")
-        file.write("_" * 100)
-        file.write("\n")
-        file.write("Docente\n")
-        file.write("\n")
-        file.write("____\n")
-        file.write("____\n")
+def main():
+    print("Bienvenido al sistema de gestión de calificaciones.")
+    if iniciar_sesion():
+        print("Sesión iniciada con éxito.")
+        opcion = ""
+        while opcion != "4":
+            print("\nMenú:")
+            print("1. Registrar calificaciones")
+            print("2. Ordenar calificaciones")
+            print("3. Buscar calificaciones")
+            print("4. Salir")
+            opcion = input("Seleccione una opción: ")
 
-    print("\nArchivo 'busqueda.txt' creado satisfactoriamente.")
+            if opcion == "1":
+                nombre_docente, calificaciones = registrar_calificaciones()
+            elif opcion == "2":
+                if 'nombre_docente' in locals() and 'calificaciones' in locals():
+                    ordenar_calificaciones(nombre_docente, calificaciones)
+                else:
+                    print("Primero registre las calificaciones.")
+            elif opcion == "3":
+                buscar_calificaciones()
+            elif opcion == "4":
+                print("Saliendo del sistema...")
+                break
+            else:
+                print("Opción no válida.")
+    else:
+        print("Sesión no iniciada. Saliendo del sistema...")
 
-# Función principal del sistema
-def sistema_gestion_calificaciones():
-    # Crear archivos de texto
-    with open("buscar.txt", "w"):
-        pass
-    with open("ordenamiento.txt", "w"):
-        pass
-
-    # Solicitar inicio de sesión
-    if not iniciar_sesion():
-        return
-
-    # Si las credenciales son correctas, mostrar el menú
-    while True:
-        print("\n ----------------MENU-----------------")
-        print("1. Ingresar datos, notas")
-        print("2. Ordenar notas")
-        print("3. Buscar nota")
-        print("4. Salir\n")
-
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
-            nombre_docente, calificaciones = registrar_calificaciones()
-        elif opcion == "2":
-            ordenar_calificaciones(nombre_docente, calificaciones)
-        elif opcion == "3":
-            buscar_calificacion()
-        elif opcion == "4":
-            print("Saliendo del sistema...")
-            break
-        else:
-            print("Opción no válida. Por favor, seleccione una opción válida.")
-
-# Ejecutar el sistema
-sistema_gestion_calificaciones()
-buscar_calificacion()
+if _name_ == "_main_":
+    main()
